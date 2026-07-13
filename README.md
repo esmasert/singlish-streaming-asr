@@ -37,19 +37,43 @@ The <=15% overall WER target was **not reached**. The final system nevertheless 
 ## Architecture
 
 ```text
-16 kHz mono WAV
-      |
-      v
-Gradio client -- sequential audio chunks --> FastAPI WebSocket backend
-      |                                      |
-      |                                      v
-      |                           Cache-aware Nemotron RNNT
-      |                           encoder/decoder state persists
-      |                                      |
-      <---- partial/final hypotheses + timing metadata ----
-      |
-      v
-WER/CER, coloured alignment, latency cards, exports
+┌──────────────────────────────┐
+│ Input audio                  │
+│ 16 kHz mono WAV              │
+└──────────────┬───────────────┘
+               │
+               v
+┌──────────────────────────────┐
+│ Gradio frontend              │
+│ - file upload / playback     │
+│ - model selection            │
+│ - chunk pacing               │
+└──────────────┬───────────────┘
+               │ WebSocket
+               v
+┌──────────────────────────────┐
+│ FastAPI streaming backend    │
+│ - chunk receiver             │
+│ - session management         │
+│ - timing collection          │
+└──────────────┬───────────────┘
+               │ sequential audio chunks
+               v
+┌──────────────────────────────┐
+│ Nemotron streaming ASR       │
+│ - cache-aware RNNT inference │
+│ - encoder state persistence  │
+│ - decoder state persistence  │
+└──────────────┬───────────────┘
+               │ partial + final hypotheses
+               v
+┌──────────────────────────────┐
+│ Evaluation + visualization   │
+│ - WER / CER                  │
+│ - coloured alignment         │
+│ - latency cards              │
+│ - CSV / JSON export          │
+└──────────────────────────────┘
 ```
 
 The backend preserves streaming caches across successive chunks. `Fast evaluation` removes artificial wall-clock sleeping, but it does not turn the system into independent batch inference.
