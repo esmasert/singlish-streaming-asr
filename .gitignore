@@ -1,0 +1,44 @@
+# Local environments
+.venv/
+.venv-*/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Models and large artifacts
+*.nemo
+*.ckpt
+*.pt
+*.pth
+*.onnx
+models/*
+!models/README.md
+
+# Data
+train_data/
+test_data/
+data/
+*.tar
+*.tar.gz
+*.zip
+
+# Runtime output
+outputs/
+backups/
+*.log
+
+# IDE and operating system
+.DS_Store
+.vscode/
+.idea/
+results/final_finetuned_560ms/

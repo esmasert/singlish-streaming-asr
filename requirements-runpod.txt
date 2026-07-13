@@ -1,0 +1,9 @@
+# Install these inside the SAME NeMo environment used for fine-tuning/testing.
+# Do not silently replace that NeMo build with a newer main branch: checkpoint
+# and conformer_stream_step compatibility matter for this demo.
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+websockets>=13,<16
+numpy>=1.26,<3
+soundfile>=0.12,<1
+omegaconf>=2.3,<3

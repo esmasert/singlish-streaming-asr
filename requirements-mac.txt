@@ -1,0 +1,10 @@
+gradio>=5.44,<6
+fastrtc==0.0.34
+websocket-client>=1.8,<2
+websockets>=13,<16
+numpy>=1.26,<3
+pandas>=2.2,<3
+scipy>=1.13,<2
+soundfile>=0.12,<1
+python-dotenv>=1.0,<2
+jiwer>=3,<5

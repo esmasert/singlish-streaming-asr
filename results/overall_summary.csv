@@ -1,0 +1,2 @@
+model,checkpoint,evaluation_files,evaluation_audio_hours,attention_left,attention_right,chunk_ms,normalized_wer_pct,normalized_cer_pct,normalized_word_corr_pct,normalized_char_corr_pct,single_stream_rtf_compute,single_stream_rtf_end_to_end,single_stream_profile_files,gpu,gpu_peak_allocated_gb
+nvidia/nemotron-speech-streaming-en-0.6b,fine-tuned Nemotron Speech Streaming EN 0.6B,346,2.442683333333333,70,6,560,18.13202771669225,11.5798998714566,85.94249201277955,91.89838305933293,0.0736433289896593,0.0768569798751181,30,NVIDIA A100-SXM4-80GB,3.818613052368164
